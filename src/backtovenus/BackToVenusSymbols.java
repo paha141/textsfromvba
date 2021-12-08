@@ -14,7 +14,7 @@ enum BackToVenusSymbols implements Symbols {
     Q("Q"),
     J("J");
 
-    private String name;
+    private final String name;
 
     BackToVenusSymbols(String name) {
         this.name = name;

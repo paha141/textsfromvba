@@ -10,7 +10,7 @@ enum ChilliPopSymbols {
     T("Tomato"),
     O("Onion"),
     W("WILD");
-    private String name;
+    private final String name;
 
     ChilliPopSymbols(String name) {
         this.name = name;

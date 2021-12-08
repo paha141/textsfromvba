@@ -18,7 +18,7 @@ public class PrimalHuntSolution extends Solution {
 
     private void checkScatterWin() {
         int count = 0;
-        for (String s: stopReel.split(",|\\|")) {
+        for (String s: stopReel.split("[,|]")) {
             if (s.equals("14"))
                 count++;
         }

@@ -5,7 +5,6 @@ import abstractClasses.Solution;
 import java.util.*;
 
 public class TakeSantaSolution extends Solution {
-    //public static final double[] COIN_LEVEL = new double[] {0.01, 0.03, 0.05, 0.07, 0.1, 0.2, 0.35, 0.5, 0.65, 0.75, 1.0};
     private String currentWildPositions;
 
     public TakeSantaSolution(int spin, double coin, int bet, String stopReel) {
@@ -30,9 +29,9 @@ public class TakeSantaSolution extends Solution {
     private void resetStopReel() {
         List<Integer> bombs = getBombs();
 
-        String[] s = stopReel.split(",|\\|");
+        String[] s = stopReel.split("[,|]");
         int counter = 0;
-        String result = "";
+        StringBuilder result = new StringBuilder();
 
         for (int i = 0; i < s.length; i++) {
             if (s[i].equals("0") || bombs.contains(i))
@@ -41,11 +40,11 @@ public class TakeSantaSolution extends Solution {
             counter++;
             if (counter == 4) {
                 counter = 0;
-                result += s[i] + "|";
-            } else result += s[i] + ",";
+                result.append(s[i]).append("|");
+            } else result.append(s[i]).append(",");
         }
 
-        stopReel = result;
+        stopReel = result.toString();
     }
 
     private List<Integer> getBombs() {

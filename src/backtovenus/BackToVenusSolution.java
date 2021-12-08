@@ -5,7 +5,6 @@ import abstractClasses.Solution;
 import java.util.*;
 
 public class BackToVenusSolution extends Solution {
-    //public static final double[] COIN_LEVEL = new double[] {0.01, 0.03, 0.05, 0.07, 0.1, 0.2, 0.35, 0.5, 0.65, 0.75, 1};
 
     private String multiplier;
 
@@ -31,9 +30,9 @@ public class BackToVenusSolution extends Solution {
     private void resetStopReel() {
         Map<Integer, Integer> map = getMultipliers();
 
-        String[] s = stopReel.split(",|\\|");
+        String[] s = stopReel.split("[,|]");
         int counter = 0;
-        String result = "";
+        StringBuilder result = new StringBuilder();
 
         for (int i = 0; i < s.length; i++) {
             if (s[i].equals("0") || map.containsKey(i)) {
@@ -45,18 +44,18 @@ public class BackToVenusSolution extends Solution {
             counter++;
             if (counter == 3) {
                 counter = 0;
-                result += s[i] + "|";
-            } else result += s[i] + ",";
+                result.append(s[i]).append("|");
+            } else result.append(s[i]).append(",");
         }
 
-        stopReel = result;
+        stopReel = result.toString();
     }
 
     private Map<Integer, Integer> getMultipliers() {
         Map<Integer, Integer> result = new HashMap<>();
         String[] multipliers = multiplier.split("\\|");
-        for (int i = 0; i < multipliers.length; i++) {
-            String[] mul = multipliers[i].split(":", 2);
+        for (String s : multipliers) {
+            String[] mul = s.split(":", 2);
             int index = Integer.parseInt(mul[0]);
             int value = Integer.parseInt(mul[1]);
             result.put(index, value);
