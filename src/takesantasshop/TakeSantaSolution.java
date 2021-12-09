@@ -22,7 +22,7 @@ public class TakeSantaSolution extends Solution {
     }
 
     public static void main(String[] args) {
-        Solution solution = new TakeSantaSolution(14, 3.00, 20, "11,13,5,9|13,3,2,0|8,11,6,5|6,6,6,8|2,2,11,3", "3,9,10,11,16,0,1,2,12,4,5,6,8,13", true);
+        Solution solution = new TakeSantaSolution(10, 1.50, 20, "2,2,2,2|2,2,2,9|10,2,2,2|12,9,0,0|12,3,3,11", "17,18,0,1,2,3", true);
         solution.showMessage();
     }
 

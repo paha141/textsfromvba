@@ -30,18 +30,13 @@ public abstract class Solution {
                 map.put(s[1], s[0]);
         }
 
-        for (Map.Entry entry: map.entrySet())
-            result.add(entry.getValue() + ":" + entry.getKey());
+        map.forEach((key, value) -> result.add(value + ":" + key));
         Collections.sort(result);
         return result;
     }
 
     protected int calcTotalWin() {
-        int result = 0;
-        for (Win win: wins)
-            result += win.getPayout();
-
-        return result;
+        return wins.stream().mapToInt(Win::getPayout).sum();
     }
 
     protected int[][] getMatrix() {
@@ -82,7 +77,7 @@ public abstract class Solution {
             System.out.println(str);
         }
 
-        System.out.printf(Locale.ENGLISH, "Total for spin: %s = %d credits;\n", joiner.toString(), totalWin);
+        System.out.printf(Locale.ENGLISH, "Total for spin: %s = %d credits;\n", joiner, totalWin);
         System.out.println(getCurrencyWin());
     }
 
