@@ -10,7 +10,7 @@ import java.util.Map;
 public class MoonBittenSpin extends Spin {
     public MoonBittenSpin(int spin, double coin, int bet, String stopReel) {
         super(spin, coin, bet, stopReel);
-        wins = initWins(new MoonBittenLineChecker());
+        initWins(new MoonBittenLineChecker());
         removeDuplicateLines();
     }
 
@@ -28,6 +28,6 @@ public class MoonBittenSpin extends Spin {
                 map.put(bigger.getLine(), bigger);
             } else map.put(win.getLine(), win);
         }
-        wins = new ArrayList<>(map.values());
+        setWins(new ArrayList<>(map.values()));
     }
 }

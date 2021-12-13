@@ -3,16 +3,16 @@ package abstractClasses;
 import java.util.*;
 
 public abstract class Spin {
-    protected int spin;
-    protected double coin;
-    protected int bet;
-    protected String stopReel;
+    private final int spin;
+    private final double coin;
+    private final int bet;
+    private String stopReel;
 
-    protected List<Win> wins;
-    protected int totalWin;
+    private List<Win> wins;
+    private int totalWin;
 
     private Map<String, List<Win>> map;
-    protected String prefixForWinMessage = "chain ";
+    private String prefixForWinMessage;
 
     public Spin(int spin, double coin, int bet, String stopReel) {
         this.spin = spin;
@@ -35,14 +35,14 @@ public abstract class Spin {
         return result;
     }
 
-    protected List<Win> initWins(LineChecker lineChecker) {
+    protected void initWins(LineChecker lineChecker) {
         prefixForWinMessage = "line ";
-        return lineChecker.getWins(getMatrix());
+        wins = lineChecker.getWins(getMatrix());
     }
 
-    protected List<Win> initWins(ClusterChecker clusterChecker) {
+    protected void initWins(ClusterChecker clusterChecker) {
         prefixForWinMessage = "chain ";
-        return clusterChecker.getWins(getMatrix());
+        wins = clusterChecker.getWins(getMatrix());
     }
 
 
@@ -149,8 +149,16 @@ public abstract class Spin {
         return stopReel;
     }
 
+    public void setStopReel(String stopReel) {
+        this.stopReel = stopReel;
+    }
+
     public List<Win> getWins() {
         return wins;
+    }
+
+    public void setWins(List<Win> wins) {
+        this.wins = wins;
     }
 
     public int getTotalWin() {

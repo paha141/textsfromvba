@@ -5,7 +5,7 @@ import abstractClasses.Spin;
 public class SafariSam2Spin extends Spin {
     public SafariSam2Spin(int spin, double coin, int bet, String stopReel) {
         super(spin, coin, bet, stopReel);
-        wins = initWins(new SafariSam2LineChecker());
+        initWins(new SafariSam2LineChecker());
         checkScatterWin();
     }
 
@@ -17,12 +17,12 @@ public class SafariSam2Spin extends Spin {
 
     private void checkScatterWin() {
         int count = 0;
-        for (String s : stopReel.split("[,|]")) {
-            if (s.equals("11"))
+        for (String s : getStopReel().split("[,|]")) {
+            if (s.equals(String.valueOf(SafariSam2Symbol.SCATTER.getId())))
                 count++;
         }
 
         if (count >= 3)
-            wins.add(new SafariSam2Win(-1, SafariSam2Symbol.SCATTER.getId(), count));
+            getWins().add(new SafariSam2Win(-1, SafariSam2Symbol.SCATTER.getId(), count));
     }
 }

@@ -1,6 +1,7 @@
 package abstractClasses;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -22,7 +23,7 @@ public abstract class AbstractLineChecker implements LineChecker {
                 temp[j] = matrix[j][lines.getLines()[i][j]];
 
             if (hasMultipliers)
-                result.add(checkLineWithMultipliers(i + 1, temp, getSymbolId(temp)));
+                result.add(checkLineWithMultiplier(i + 1, temp, getSymbolId(temp)));
             else if (isTwoSides) {
                 result.add(checkLine(i + 1, temp, getSymbolId(temp)));
                 int[] reverse = LineChecker.getReverse(temp);
@@ -33,10 +34,11 @@ public abstract class AbstractLineChecker implements LineChecker {
 
         return result.stream()
                 .filter(win -> win.getPayout() != 0)
+                .sorted(Comparator.comparingInt(Win::getLine))
                 .collect(Collectors.toList());
     }
 
-    protected Win checkLineWithMultipliers(int line, int[] temp, int symbolId) {
+    protected Win checkLineWithMultiplier(int line, int[] temp, int symbolId) {
         int count = 0;
         int multiplier = 1;
 

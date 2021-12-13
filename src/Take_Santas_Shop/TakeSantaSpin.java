@@ -18,7 +18,7 @@ public class TakeSantaSpin extends Spin {
         if (isBombCounterZero)
             resetStopReel();
 
-        wins = initWins(new TakeSantaLineChecker());
+        initWins(new TakeSantaLineChecker());
     }
 
     public static void main(String[] args) {
@@ -30,7 +30,7 @@ public class TakeSantaSpin extends Spin {
     private void resetStopReel() {
         List<Integer> bombs = getBombs();
 
-        String[] s = stopReel.split("[,|]");
+        String[] s = getStopReel().split("[,|]");
         int counter = 0;
         StringBuilder result = new StringBuilder();
 
@@ -45,7 +45,7 @@ public class TakeSantaSpin extends Spin {
             } else result.append(s[i]).append(",");
         }
 
-        stopReel = result.toString();
+        setStopReel(result.toString());
     }
 
     private List<Integer> getBombs() {

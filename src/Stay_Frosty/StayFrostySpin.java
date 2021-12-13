@@ -6,7 +6,7 @@ import abstractClasses.Spin;
 public class StayFrostySpin extends Spin {
     public StayFrostySpin(int spin, double coin, int bet, String stopReel) {
         super(spin, coin, bet, stopReel);
-        wins = initWins(new StayFrostyLineChecker());
+        initWins(new StayFrostyLineChecker());
     }
 
     public static void main(String[] args) {

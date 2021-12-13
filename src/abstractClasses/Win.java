@@ -1,11 +1,10 @@
 package abstractClasses;
 
 public abstract class Win {
-    protected int line;
-    protected int symbolId;
-    protected int countOfSymbols;
+    private final int line;
+    private final int symbolId;
+    private final int countOfSymbols;
 
-    private boolean isMultiplierLine;
     private int multiplier;
 
     protected int payout;
@@ -24,7 +23,6 @@ public abstract class Win {
         this.symbolId = symbolId;
         this.countOfSymbols = countOfSymbols;
         this.multiplier = multiplier;
-        isMultiplierLine = multiplier > 1;
     }
 
     public int getPayout() {
@@ -48,11 +46,7 @@ public abstract class Win {
     }
 
     public boolean isMultiplierLine() {
-        return isMultiplierLine;
-    }
-
-    public void setMultiplierLine(boolean multiplierLine) {
-        isMultiplierLine = multiplierLine;
+        return multiplier != 1;
     }
 
     public int getMultiplier() {
@@ -70,7 +64,7 @@ public abstract class Win {
     @Override
     public String toString() {
         if (line == -1) return String.format(MESSAGE_SCATTER, countOfSymbols, symbol.getName(), payout);
-        if (isMultiplierLine)
+        if (isMultiplierLine())
             return String.format(MESSAGE_WITH_MULTIPLIER, multiplier, payout / multiplier, countOfSymbols, symbol.getName(), payout);
         return String.format(MESSAGE_SIMPLE, countOfSymbols, symbol.getName(), payout);
     }

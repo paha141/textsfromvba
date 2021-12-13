@@ -6,7 +6,7 @@ public class PrimalHuntSpin extends Spin {
     public PrimalHuntSpin(int spin, double coin, int bet, String stopReel) {
         super(spin, coin, bet, stopReel);
 
-        wins = initWins(new PrimalHuntLineChecker());
+        initWins(new PrimalHuntLineChecker());
         checkScatterWin();
     }
 
@@ -17,12 +17,12 @@ public class PrimalHuntSpin extends Spin {
 
     private void checkScatterWin() {
         int count = 0;
-        for (String s : stopReel.split("[,|]")) {
+        for (String s : getStopReel().split("[,|]")) {
             if (s.equals("14"))
                 count++;
         }
 
         if (count >= 3)
-            wins.add(new PrimalHuntWin(-1, 14, count));
+            getWins().add(new PrimalHuntWin(-1, 14, count));
     }
 }

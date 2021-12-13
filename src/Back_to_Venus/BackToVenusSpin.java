@@ -17,7 +17,7 @@ public class BackToVenusSpin extends Spin {
         this.multiplier = multiplier;
 
         if (!multiplier.isEmpty()) resetStopReel();
-        wins = initWins(new BackToVenusLineChecker());
+        initWins(new BackToVenusLineChecker());
     }
 
     public static void main(String[] args) {
@@ -29,7 +29,7 @@ public class BackToVenusSpin extends Spin {
     private void resetStopReel() {
         Map<Integer, Integer> map = getMultipliers();
 
-        String[] s = stopReel.split("[,|]");
+        String[] s = getStopReel().split("[,|]");
         int counter = 0;
         StringBuilder result = new StringBuilder();
 
@@ -48,7 +48,7 @@ public class BackToVenusSpin extends Spin {
             } else result.append(",");
         }
 
-        stopReel = result.toString();
+        setStopReel(result.toString());
     }
 
     private Map<Integer, Integer> getMultipliers() {
