@@ -1,6 +1,6 @@
 package Primal_Hunt;
 
-import abstractClasses.Symbols;
+import abstractClasses.Symbol;
 import abstractClasses.Win;
 
 public class PrimalHuntWin extends Win {
@@ -11,7 +11,7 @@ public class PrimalHuntWin extends Win {
 
     public PrimalHuntWin(int line, int symbolId, int countOfSymbols, int multiplier) {
         super(line, symbolId, countOfSymbols, multiplier);
-        symbol = Symbols.getById(symbolId, PrimalHuntSymbols.values());
+        symbol = Symbol.getById(symbolId, PrimalHuntSymbol.values());
         payout = symbol.getPayout(countOfSymbols) * multiplier;
     }
 

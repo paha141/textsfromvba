@@ -1,10 +1,10 @@
 package Safari_Sam_2;
 
-import abstractClasses.Symbols;
+import abstractClasses.Symbol;
 
 import java.util.Set;
 
-public enum SafariSam2Symbols implements Symbols {
+public enum SafariSam2Symbol implements Symbol {
     SAM("Sam", 0, new int[]{0, 0, 25, 50, 200}),
     PAM("Pam", 1, new int[]{0, 0, 20, 40, 160}),
     LION("Lion", 2, new int[]{0, 0, 15, 30, 80}),
@@ -22,9 +22,9 @@ public enum SafariSam2Symbols implements Symbols {
     private final int id;
     private final int[] payouts;
 
-    public static final Set<Integer> IDS = Symbols.getIds(values());
+    public static final Set<Integer> IDS = Symbol.getIds(values());
 
-    SafariSam2Symbols(String name, int id, int[] payouts) {
+    SafariSam2Symbol(String name, int id, int[] payouts) {
         this.name = name;
         this.id = id;
         this.payouts = payouts;

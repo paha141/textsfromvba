@@ -1,10 +1,10 @@
 package Take_Santas_Shop;
 
-import abstractClasses.Symbols;
+import abstractClasses.Symbol;
 
 import java.util.Set;
 
-public enum TakeSantaSymbols implements Symbols {
+public enum TakeSantaSymbol implements Symbol {
     WILD("BALL", 1, new int[]{0, 1, 4, 12, 60}),
     BALL("Ball", 2, new int[]{0, 1, 4, 12, 60}),
     GINGERBREAD("Gingerbread", 3, new int[]{0, 0, 3, 6, 20}),
@@ -23,9 +23,9 @@ public enum TakeSantaSymbols implements Symbols {
     private final int id;
     private final int[] payouts;
 
-    public static final Set<Integer> IDS = Symbols.getIds(values());
+    public static final Set<Integer> IDS = Symbol.getIds(values());
 
-    TakeSantaSymbols(String name, int id, int[] payouts) {
+    TakeSantaSymbol(String name, int id, int[] payouts) {
         this.name = name;
         this.id = id;
         this.payouts = payouts;

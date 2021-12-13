@@ -9,7 +9,7 @@ import java.util.Arrays;
 
 public class BackToVenusLineChecker extends AbstractLineChecker implements LineChecker {
     static {
-        ids = BackToVenusSymbols.IDS;
+        ids = BackToVenusSymbol.IDS;
         lines = BackToVenusLines.get();
         hasMultipliers = true;
         wildIds = Arrays.asList(21, 22, 23);

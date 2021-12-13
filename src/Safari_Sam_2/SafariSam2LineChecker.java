@@ -9,7 +9,7 @@ import java.util.Collections;
 public class SafariSam2LineChecker extends AbstractLineChecker implements LineChecker {
 
     static {
-        ids = SafariSam2Symbols.IDS;
+        ids = SafariSam2Symbol.IDS;
         lines = SafariSam2Lines.get();
         hasMultipliers = false;
         wildIds = Collections.singletonList(10);

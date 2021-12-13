@@ -4,7 +4,7 @@ import java.util.Arrays;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-public interface Symbols {
+public interface Symbol {
     default int getPayout(int countOfSymbols){
         return getPayouts()[countOfSymbols-1];
     }
@@ -15,17 +15,15 @@ public interface Symbols {
 
     int[] getPayouts();
 
-    static Symbols getById(int id, Symbols[] symbols) {
+    static Symbol getById(int id, Symbol[] symbols) {
         return Arrays.stream(symbols)
                 .filter(symbol -> symbol.getId() == id)
                 .findFirst().orElse(null);
     }
 
-    static Set<Integer> getIds(Symbols[] symbols) {
+    static Set<Integer> getIds(Symbol[] symbols) {
         return Arrays.stream(symbols)
-                .map(Symbols::getId)
+                .map(Symbol::getId)
                 .collect(Collectors.toSet());
     }
-
-
 }

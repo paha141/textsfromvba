@@ -1,10 +1,10 @@
 package Chilli_Pop;
 
-import abstractClasses.Symbols;
+import abstractClasses.Symbol;
 
 import java.util.Set;
 
-public enum ChilliPopSymbols implements Symbols {
+public enum ChilliPopSymbol implements Symbol {
     RED_CHILLI("Red Chilli", 0, 12),
     GREEN_CHILLI("Green Chilli", 1, 12),
     GARLIC("Garlic", 2, 7),
@@ -19,9 +19,9 @@ public enum ChilliPopSymbols implements Symbols {
     private final int id;
     private final int payout;
 
-    public static final Set<Integer> IDS = Symbols.getIds(values());
+    public static final Set<Integer> IDS = Symbol.getIds(values());
 
-    ChilliPopSymbols(String name, int id, int payout) {
+    ChilliPopSymbol(String name, int id, int payout) {
         this.name = name;
         this.id = id;
         this.payout = payout;

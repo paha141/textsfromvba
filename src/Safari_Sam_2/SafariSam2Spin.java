@@ -23,6 +23,6 @@ public class SafariSam2Spin extends Spin {
         }
 
         if (count >= 3)
-            wins.add(new SafariSam2Win(-1, 11, count));
+            wins.add(new SafariSam2Win(-1, SafariSam2Symbol.SCATTER.getId(), count));
     }
 }

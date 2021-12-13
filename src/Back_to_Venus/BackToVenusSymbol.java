@@ -1,10 +1,10 @@
 package Back_to_Venus;
 
-import abstractClasses.Symbols;
+import abstractClasses.Symbol;
 
 import java.util.Set;
 
-public enum BackToVenusSymbols implements Symbols {
+public enum BackToVenusSymbol implements Symbol {
     FARMER("Farmer", 1, new int[]{0, 0, 30, 100, 300}),
     PLANT_ALIEN("Plant Alien", 2, new int[]{0, 0, 20, 60, 120}),
     COW("Cow", 3, new int[]{0, 0, 15, 40, 80}),
@@ -20,9 +20,9 @@ public enum BackToVenusSymbols implements Symbols {
     private final int id;
     private final int[] payouts;
 
-    public static final Set<Integer> IDS = Symbols.getIds(values());
+    public static final Set<Integer> IDS = Symbol.getIds(values());
 
-    BackToVenusSymbols(String name, int id, int[] payouts) {
+    BackToVenusSymbol(String name, int id, int[] payouts) {
         this.name = name;
         this.id = id;
         this.payouts = payouts;

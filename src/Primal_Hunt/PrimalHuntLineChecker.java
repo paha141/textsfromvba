@@ -9,7 +9,7 @@ import java.util.Arrays;
 public class PrimalHuntLineChecker extends AbstractLineChecker implements LineChecker {
 
     static {
-        ids = PrimalHuntSymbols.IDS;
+        ids = PrimalHuntSymbol.IDS;
         lines = PrimalHuntLines.get();
         hasMultipliers = true;
         wildIds = Arrays.asList(11, 12, 13);

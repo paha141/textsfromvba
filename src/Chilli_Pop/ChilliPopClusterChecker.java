@@ -39,8 +39,8 @@ public class ChilliPopClusterChecker implements ClusterChecker {
                 if (i == x && j == y) continue;
                 if ((i == x - 1 || i == x + 1) && (j == y - 1 || j == y + 1)) continue;
 
-                if (matrix[i][j] == symbolId || matrix[i][j] == ChilliPopSymbols.WILD.getId()) {
-                    if (matrix[i][j] != ChilliPopSymbols.WILD.getId()) matrix[i][j] = -1;
+                if (matrix[i][j] == symbolId || matrix[i][j] == ChilliPopSymbol.WILD.getId()) {
+                    if (matrix[i][j] != ChilliPopSymbol.WILD.getId()) matrix[i][j] = -1;
                     else {
                         countOfWild[0]++;
                         matrix[i][j] = -2;
@@ -54,6 +54,6 @@ public class ChilliPopClusterChecker implements ClusterChecker {
     private void resetMatrix(int[][] matrix) {
         for (int i = 0; i < matrix.length; i++)
             for (int j = 0; j < matrix[i].length; j++)
-                if (matrix[i][j] == -2) matrix[i][j] = ChilliPopSymbols.WILD.getId();
+                if (matrix[i][j] == -2) matrix[i][j] = ChilliPopSymbol.WILD.getId();
     }
 }

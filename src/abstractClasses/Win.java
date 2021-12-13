@@ -9,7 +9,7 @@ public abstract class Win {
     private int multiplier;
 
     protected int payout;
-    protected Symbols symbol;
+    protected Symbol symbol;
 
     private static final String MESSAGE_SIMPLE = "%dx %s symbol cost %d credits;";
     private static final String MESSAGE_WITH_MULTIPLIER = "%d (multiplier) * %d (%dx %s symbol) = %d credits;";
@@ -63,7 +63,7 @@ public abstract class Win {
         this.multiplier = multiplier;
     }
 
-    public Symbols getSymbol() {
+    public Symbol getSymbol() {
         return symbol;
     }
 

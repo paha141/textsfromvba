@@ -1,10 +1,10 @@
 package Moon_Bitten;
 
-import abstractClasses.Symbols;
+import abstractClasses.Symbol;
 
 import java.util.Set;
 
-public enum MoonBittenSymbols implements Symbols {
+public enum MoonBittenSymbol implements Symbol {
     BAT("Bat", 0, new int[]{0, 0, 100, 200, 500, 1000, 2500, 4000, 7500, 15000, 25000, 50000}),
     CASTLE("Castle", 1, new int[]{0, 0, 75, 300, 1000, 2500}),
     CRUCIFIX("Crucifix", 2, new int[]{0, 0, 60, 250, 750, 2000}),
@@ -22,9 +22,9 @@ public enum MoonBittenSymbols implements Symbols {
     private final int id;
     private final int[] payouts;
 
-    public static final Set<Integer> IDS = Symbols.getIds(values());
+    public static final Set<Integer> IDS = Symbol.getIds(values());
 
-    MoonBittenSymbols(String name, int id, int[] payouts) {
+    MoonBittenSymbol(String name, int id, int[] payouts) {
         this.name = name;
         this.id = id;
         this.payouts = payouts;

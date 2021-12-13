@@ -12,7 +12,7 @@ public class ChilliPopSpin extends Spin {
         super(spin, coin, bet, stopReel);
         if (checkForWild()) {
             wins = new ArrayList<>();
-            wins.add(new ChilliPopWin(1, ChilliPopSymbols.WILD.getId(), stopReel.split("[,|]").length));
+            wins.add(new ChilliPopWin(1, ChilliPopSymbol.WILD.getId(), stopReel.split("[,|]").length));
 
         } else wins = initWins(new ChilliPopClusterChecker());
     }

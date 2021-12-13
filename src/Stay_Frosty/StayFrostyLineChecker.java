@@ -9,7 +9,7 @@ import java.util.Collections;
 public class StayFrostyLineChecker extends AbstractLineChecker implements LineChecker {
 
     static {
-        ids = StayFrostySymbols.IDS;
+        ids = StayFrostySymbol.IDS;
         lines = StayFrostyLines.get();
         hasMultipliers = false;
         wildIds = Collections.singletonList(0);

@@ -10,7 +10,7 @@ import java.util.Collections;
 public class TakeSantaLineChecker extends AbstractLineChecker implements LineChecker {
 
     static {
-        ids = TakeSantaSymbols.IDS;
+        ids = TakeSantaSymbol.IDS;
         lines = TakeSantaLines.get();
         hasMultipliers = false;
         wildIds = Collections.singletonList(1);

@@ -9,7 +9,7 @@ import java.util.*;
 public class MoonBittenLineChecker extends AbstractLineChecker implements LineChecker {
 
     static {
-        ids = MoonBittenSymbols.IDS;
+        ids = MoonBittenSymbol.IDS;
         lines = MoonBittenLines.get();
         hasMultipliers = false;
         wildIds = Arrays.asList(10, 11, 14, 15, 16);
@@ -19,11 +19,11 @@ public class MoonBittenLineChecker extends AbstractLineChecker implements LineCh
     @Override
     protected Win checkLine(int line, int[] temp, int symbolId) {
         int count = 0;
-        symbolId = symbolId == MoonBittenSymbols.TWO_BATS.getId() ? MoonBittenSymbols.BAT.getId() : symbolId;
+        symbolId = symbolId == MoonBittenSymbol.TWO_BATS.getId() ? MoonBittenSymbol.BAT.getId() : symbolId;
         for (int i : temp) {
             if (i == symbolId || wildIds.contains(i))
                 count++;
-            else if (i == MoonBittenSymbols.TWO_BATS.getId() && symbolId == MoonBittenSymbols.BAT.getId()) {
+            else if (i == MoonBittenSymbol.TWO_BATS.getId() && symbolId == MoonBittenSymbol.BAT.getId()) {
                 count += 2;
             } else break;
         }
@@ -46,7 +46,7 @@ public class MoonBittenLineChecker extends AbstractLineChecker implements LineCh
             }
         }
 
-        Win winWild = createWin(line, MoonBittenSymbols.WILD.getId(), count, 1);
+        Win winWild = createWin(line, MoonBittenSymbol.WILD.getId(), count, 1);
         return winWild.getPayout() > win.getPayout() ? winWild : win;
     }
 }

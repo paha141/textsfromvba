@@ -1,10 +1,10 @@
 package Primal_Hunt;
 
-import abstractClasses.Symbols;
+import abstractClasses.Symbol;
 
 import java.util.Set;
 
-public enum PrimalHuntSymbols implements Symbols {
+public enum PrimalHuntSymbol implements Symbol {
     LION("Lion", 0, new int[]{0, 1, 5, 25, 100}),
     SPEARHEAD("Spearhead", 1, new int[]{0, 0, 8, 15, 50}),
     AXE("Axe", 2, new int[]{0, 0, 7, 10, 25}),
@@ -22,9 +22,9 @@ public enum PrimalHuntSymbols implements Symbols {
     private final int id;
     private final int[] payouts;
 
-    public static final Set<Integer> IDS = Symbols.getIds(values());
+    public static final Set<Integer> IDS = Symbol.getIds(values());
 
-    PrimalHuntSymbols(String name, int id, int[] payouts) {
+    PrimalHuntSymbol(String name, int id, int[] payouts) {
         this.name = name;
         this.id = id;
         this.payouts = payouts;

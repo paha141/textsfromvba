@@ -1,6 +1,6 @@
 package Chilli_Pop;
 
-import abstractClasses.Symbols;
+import abstractClasses.Symbol;
 import abstractClasses.Win;
 
 import java.util.Arrays;
@@ -16,8 +16,8 @@ public class ChilliPopWin extends Win {
 
     public ChilliPopWin(int line, int symbolId, int countOfSymbols, int multiplier) {
         super(line, symbolId, countOfSymbols, multiplier);
-        symbol = Symbols.getById(symbolId, ChilliPopSymbols.values());
-        if (symbolId == ChilliPopSymbols.WILD.getId()) {
+        symbol = Symbol.getById(symbolId, ChilliPopSymbol.values());
+        if (symbolId == ChilliPopSymbol.WILD.getId()) {
             int index = Arrays.binarySearch(WILD_COUNTS, countOfSymbols);
             payout = WILD_PAYOUTS[index];
         } else payout = symbol.getPayout(countOfSymbols) * multiplier;
