@@ -17,7 +17,7 @@ public interface Symbols {
 
     static Symbols getById(int id, Symbols[] symbols) {
         return Arrays.stream(symbols)
-                .filter(x -> x.getId() == id)
+                .filter(symbol -> symbol.getId() == id)
                 .findFirst().orElse(null);
     }
 

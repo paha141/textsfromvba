@@ -9,7 +9,6 @@ public abstract class Win {
     private int multiplier;
 
     protected int payout;
-
     protected Symbols symbol;
 
     private static final String MESSAGE_SIMPLE = "%dx %s symbol cost %d credits;";

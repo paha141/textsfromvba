@@ -1,6 +1,5 @@
 import abstractClasses.Spin;
-import stayfrosty.StayFrostySpin;
-import takesantasshop.TakeSantaSpin;
+import Stay_Frosty.StayFrostySpin;
 
 public class Main {
     public static void main(String[] args) {

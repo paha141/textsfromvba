@@ -12,7 +12,7 @@ public abstract class Spin {
     protected int totalWin;
 
     private Map<String, List<Win>> map;
-    private String prefixForWinMessage = "chain ";
+    protected String prefixForWinMessage = "chain ";
 
     public Spin(int spin, double coin, int bet, String stopReel) {
         this.spin = spin;
@@ -35,14 +35,14 @@ public abstract class Spin {
         return result;
     }
 
-    protected List<Win> initWins(LineCheck lineCheck) {
+    protected List<Win> initWins(LineChecker lineChecker) {
         prefixForWinMessage = "line ";
-        return lineCheck.getWins(getMatrix());
+        return lineChecker.getWins(getMatrix());
     }
 
-    protected List<Win> initWins(ClusterCheck clusterCheck) {
+    protected List<Win> initWins(ClusterChecker clusterChecker) {
         prefixForWinMessage = "chain ";
-        return clusterCheck.getWins(getMatrix());
+        return clusterChecker.getWins(getMatrix());
     }
 
 
@@ -128,8 +128,7 @@ public abstract class Spin {
 
 
     private String getCurrencyWinMessage() {
-        if (coin == 1)
-            return "Win in currency = win in credits;";
+        if (coin == 1) return "Win in currency = win in credits;";
         else
             return String.format(Locale.ENGLISH, "Win in currency: %d * %.2f = %.2f;", getTotalWin(), coin, totalWin * coin);
     }
@@ -159,8 +158,16 @@ public abstract class Spin {
         return totalWin;
     }
 
-    public Map<String, List<Win>> getMap() {
+    protected Map<String, List<Win>> getMap() {
         if (map == null) initMap();
         return map;
+    }
+
+    public String getPrefixForWinMessage() {
+        return prefixForWinMessage;
+    }
+
+    public void setPrefixForWinMessage(String prefixForWinMessage) {
+        this.prefixForWinMessage = prefixForWinMessage;
     }
 }
