@@ -1,7 +1,23 @@
 package stayfrosty;
 
-public class StayFrostyLine {
-    public static final int[][] LINE = new int[][] {
+import abstractClasses.Lines;
+
+class StayFrostyLines implements Lines {
+    private StayFrostyLines() {}
+
+    private static StayFrostyLines instance;
+
+    public static StayFrostyLines get() {
+        if (instance == null) instance = new StayFrostyLines();
+        return instance;
+    }
+
+    @Override
+    public int[][] getLines() {
+        return LINE;
+    }
+
+    private static final int[][] LINE = new int[][]{
             {0, 0, 0, 0, 0}, // 1
             {1, 1, 1, 1, 1}, // 2
             {2, 2, 2, 2, 2}, // 3

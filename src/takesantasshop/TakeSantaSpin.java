@@ -1,29 +1,30 @@
 package takesantasshop;
 
-import abstractClasses.Solution;
+import abstractClasses.Spin;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
-public class TakeSantaSolution extends Solution {
-    private String currentWildPositions;
+public class TakeSantaSpin extends Spin {
+    private final String currentWildPositions;
 
-    public TakeSantaSolution(int spin, double coin, int bet, String stopReel) {
+    public TakeSantaSpin(int spin, double coin, int bet, String stopReel) {
         this(spin, coin, bet, stopReel, "", false);
     }
 
-    public TakeSantaSolution(int spin, double coin, int bet, String stopReel, String currentWildPositions, boolean isBombCounterZero) {
+    public TakeSantaSpin(int spin, double coin, int bet, String stopReel, String currentWildPositions, boolean isBombCounterZero) {
         super(spin, coin, bet, stopReel);
         this.currentWildPositions = currentWildPositions;
         if (isBombCounterZero)
             resetStopReel();
 
         wins = initWins(new TakeSantaLineCheck());
-        totalWin = calcTotalWin();
     }
 
     public static void main(String[] args) {
-        Solution solution = new TakeSantaSolution(10, 1.50, 20, "2,2,2,2|2,2,2,9|10,2,2,2|12,9,0,0|12,3,3,11", "17,18,0,1,2,3", true);
-        solution.showMessage();
+        Spin spin = new TakeSantaSpin(10, 1.50, 20, "2,2,2,2|2,2,2,9|10,2,2,2|12,9,0,0|12,3,3,11",
+                "17,18,0,1,2,3", true);
+        spin.showMessage();
     }
 
     private void resetStopReel() {
@@ -48,12 +49,9 @@ public class TakeSantaSolution extends Solution {
     }
 
     private List<Integer> getBombs() {
-        List<Integer> result = new ArrayList<>();
-
-        for (String s: currentWildPositions.split(","))
-            result.add(Integer.parseInt(s));
-
-        return result;
+        return Arrays.stream(currentWildPositions.split(","))
+                .map(Integer::parseInt)
+                .collect(Collectors.toList());
     }
 
     public String getCurrentWildPositions() {

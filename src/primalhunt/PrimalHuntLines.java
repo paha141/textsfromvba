@@ -1,7 +1,23 @@
 package primalhunt;
 
-class PrimalHuntLine {
-    public static final int[][] LINE = new int[][] {
+import abstractClasses.Lines;
+
+class PrimalHuntLines implements Lines {
+    private PrimalHuntLines() {}
+
+    private static PrimalHuntLines instance;
+
+    public static PrimalHuntLines get() {
+        if (instance == null) instance = new PrimalHuntLines();
+        return instance;
+    }
+
+    @Override
+    public int[][] getLines() {
+        return LINE;
+    }
+
+    private static final int[][] LINE = new int[][]{
             {0, 0, 0, 0, 0},//1
             {1, 1, 1, 1, 1},//2
             {2, 2, 2, 2, 2},//3

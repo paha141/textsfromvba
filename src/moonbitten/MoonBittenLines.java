@@ -1,7 +1,23 @@
 package moonbitten;
 
-public class MoonBittenLine {
-    public static final int[][] LINE = new int[][] {
+import abstractClasses.Lines;
+
+class MoonBittenLines implements Lines {
+
+    private MoonBittenLines() {}
+    private static MoonBittenLines instance;
+
+    public static MoonBittenLines get() {
+        if (instance == null) instance = new MoonBittenLines();
+        return instance;
+    }
+
+    @Override
+    public int[][] getLines() {
+        return LINE;
+    }
+
+    private static final int[][] LINE = new int[][]{
             {0, 0, 0, 0, 0, 0},//1
             {1, 1, 1, 1, 1, 1},//2
             {2, 2, 2, 2, 2, 2},//3

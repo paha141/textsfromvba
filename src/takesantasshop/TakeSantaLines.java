@@ -1,7 +1,24 @@
 package takesantasshop;
 
-class TakeSantaLine {
-    public static final int[][] LINE = new int[][] {
+import abstractClasses.Lines;
+
+class TakeSantaLines implements Lines {
+    private TakeSantaLines() {
+    }
+
+    private static TakeSantaLines instance;
+
+    public static TakeSantaLines get() {
+        if (instance == null) instance = new TakeSantaLines();
+        return instance;
+    }
+
+    @Override
+    public int[][] getLines() {
+        return LINE;
+    }
+
+    private static final int[][] LINE = new int[][]{
             {0, 0, 0, 0, 0},//1
             {1, 1, 1, 1, 1},//2
             {1, 2, 3, 2, 1},//3

@@ -1,30 +1,29 @@
 package backtovenus;
 
-import abstractClasses.Solution;
+import abstractClasses.Spin;
 
 import java.util.*;
 
-public class BackToVenusSolution extends Solution {
+public class BackToVenusSpin extends Spin {
 
-    private String multiplier;
+    private final String multiplier;
 
-    public BackToVenusSolution(int spin, double coin, int bet, String stopReel) {
+    public BackToVenusSpin(int spin, double coin, int bet, String stopReel) {
         this(spin, coin, bet, stopReel, "");
     }
 
-    public BackToVenusSolution(int spin, double coin, int bet, String stopReel, String multiplier) {
+    public BackToVenusSpin(int spin, double coin, int bet, String stopReel, String multiplier) {
         super(spin, coin, bet, stopReel);
         this.multiplier = multiplier;
 
         if (!multiplier.isEmpty()) resetStopReel();
         wins = initWins(new BackToVenusLineCheck());
-        totalWin = calcTotalWin();
     }
 
     public static void main(String[] args) {
 
-        Solution solution = new BackToVenusSolution(38, 1.20, 20, "1,1,1|1,1,1|1,1,1|1,1,1|1,1,1", "");
-        solution.showMessage();
+        Spin spin = new BackToVenusSpin(38, 1.20, 20, "1,1,1|1,1,1|1,1,1|1,1,1|1,1,1");
+        spin.showMessage();
     }
 
     private void resetStopReel() {
@@ -42,10 +41,11 @@ public class BackToVenusSolution extends Solution {
             }
 
             counter++;
+            result.append(s[i]);
             if (counter == 3) {
                 counter = 0;
-                result.append(s[i]).append("|");
-            } else result.append(s[i]).append(",");
+                result.append("|");
+            } else result.append(",");
         }
 
         stopReel = result.toString();
@@ -60,6 +60,7 @@ public class BackToVenusSolution extends Solution {
             int value = Integer.parseInt(mul[1]);
             result.put(index, value);
         }
+
         return result;
     }
 }
