@@ -5,9 +5,9 @@ import abstractClasses.Lines;
 class PrimalHuntLines implements Lines {
     private PrimalHuntLines() {}
 
-    private static PrimalHuntLines instance;
+    private static Lines instance;
 
-    public static PrimalHuntLines get() {
+    public static Lines get() {
         if (instance == null) instance = new PrimalHuntLines();
         return instance;
     }

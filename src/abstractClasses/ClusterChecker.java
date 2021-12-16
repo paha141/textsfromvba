@@ -2,6 +2,6 @@ package abstractClasses;
 
 import java.util.List;
 
-public interface ClusterChecker {
-    List<Win> getWins(int[][] matrix);
+public interface ClusterChecker extends Checker {
+    List<Win> getWins();
 }

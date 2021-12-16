@@ -2,7 +2,7 @@ package Back_to_Venus;
 
 import abstractClasses.Symbol;
 
-import java.util.Set;
+import java.util.List;
 
 public enum BackToVenusSymbol implements Symbol {
     FARMER("Farmer", 1, new int[]{0, 0, 30, 100, 300}),
@@ -16,11 +16,11 @@ public enum BackToVenusSymbol implements Symbol {
     Q("Q", 9, new int[]{0, 0, 5, 10, 20}),
     J("J", 10, new int[]{0, 0, 5, 10, 20});
 
-    private final String name;
+    private String name;
     private final int id;
     private final int[] payouts;
 
-    public static final Set<Integer> IDS = Symbol.getIds(values());
+    public static final List<Integer> IDS = Symbol.getIds(values());
 
     BackToVenusSymbol(String name, int id, int[] payouts) {
         this.name = name;
@@ -31,6 +31,11 @@ public enum BackToVenusSymbol implements Symbol {
     @Override
     public String getName() {
         return name;
+    }
+
+    @Override
+    public void setName(String name) {
+        this.name = name;
     }
 
     @Override

@@ -5,6 +5,7 @@ import abstractClasses.Spin;
 import java.util.*;
 
 public class BackToVenusSpin extends Spin {
+    private static final int BET = 20;
 
     private final String multiplier;
 
@@ -17,12 +18,11 @@ public class BackToVenusSpin extends Spin {
         this.multiplier = multiplier;
 
         if (!multiplier.isEmpty()) resetStopReel();
-        initWins(new BackToVenusLineChecker());
+        initWins(new BackToVenusLineChecker(this));
     }
 
     public static void main(String[] args) {
-
-        Spin spin = new BackToVenusSpin(38, 1.20, 20, "1,1,1|1,1,1|1,1,1|1,1,1|1,1,1");
+        Spin spin = new BackToVenusSpin(38, 1.20, BET, "1,1,1|1,1,1|1,1,1|1,1,1|1,1,1");
         spin.showMessage();
     }
 
@@ -30,7 +30,6 @@ public class BackToVenusSpin extends Spin {
         Map<Integer, Integer> map = getMultipliers();
 
         String[] s = getStopReel().split("[,|]");
-        int counter = 0;
         StringBuilder result = new StringBuilder();
 
         for (int i = 0; i < s.length; i++) {
@@ -40,12 +39,10 @@ public class BackToVenusSpin extends Spin {
                     s[i] = map.get(i) == 2 ? "22" : "23";
             }
 
-            counter++;
             result.append(s[i]);
-            if (counter == 3) {
-                counter = 0;
-                result.append("|");
-            } else result.append(",");
+
+            if (i % 3 == 2) result.append("|");
+            else result.append(",");
         }
 
         setStopReel(result.toString());

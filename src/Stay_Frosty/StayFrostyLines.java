@@ -5,9 +5,9 @@ import abstractClasses.Lines;
 class StayFrostyLines implements Lines {
     private StayFrostyLines() {}
 
-    private static StayFrostyLines instance;
+    private static Lines instance;
 
-    public static StayFrostyLines get() {
+    public static Lines get() {
         if (instance == null) instance = new StayFrostyLines();
         return instance;
     }

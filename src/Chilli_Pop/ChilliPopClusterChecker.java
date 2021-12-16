@@ -1,14 +1,24 @@
 package Chilli_Pop;
 
+import abstractClasses.Checker;
 import abstractClasses.ClusterChecker;
+import abstractClasses.Spin;
 import abstractClasses.Win;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class ChilliPopClusterChecker implements ClusterChecker {
+    private final Spin spin;
+    private final int[][] matrix;
+
+    public ChilliPopClusterChecker(Spin spin) {
+        this.spin = spin;
+        matrix = Checker.getMatrix(spin.getStopReel());
+    }
+
     @Override
-    public List<Win> getWins(int[][] matrix) {
+    public List<Win> getWins() {
         List<Win> result = new ArrayList<>();
 
         for (int i = 0; i < matrix.length; i++)

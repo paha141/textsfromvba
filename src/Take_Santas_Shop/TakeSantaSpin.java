@@ -2,10 +2,13 @@ package Take_Santas_Shop;
 
 import abstractClasses.Spin;
 
-import java.util.*;
+import java.util.Arrays;
+import java.util.List;
 import java.util.stream.Collectors;
 
 public class TakeSantaSpin extends Spin {
+    private static final int BET = 20;
+
     private final String currentWildPositions;
 
     public TakeSantaSpin(int spin, double coin, int bet, String stopReel) {
@@ -18,11 +21,11 @@ public class TakeSantaSpin extends Spin {
         if (isBombCounterZero)
             resetStopReel();
 
-        initWins(new TakeSantaLineChecker());
+        initWins(new TakeSantaLineChecker(this));
     }
 
     public static void main(String[] args) {
-        Spin spin = new TakeSantaSpin(10, 1.50, 20, "2,2,2,2|2,2,2,9|10,2,2,2|12,9,0,0|12,3,3,11",
+        Spin spin = new TakeSantaSpin(10, 1.50, BET, "2,2,2,2|2,2,2,9|10,2,2,2|12,9,0,0|12,3,3,11",
                 "17,18,0,1,2,3", true);
         spin.showMessage();
     }
@@ -31,18 +34,15 @@ public class TakeSantaSpin extends Spin {
         List<Integer> bombs = getBombs();
 
         String[] s = getStopReel().split("[,|]");
-        int counter = 0;
         StringBuilder result = new StringBuilder();
 
         for (int i = 0; i < s.length; i++) {
             if (s[i].equals("0") || bombs.contains(i))
                 s[i] = "1";
 
-            counter++;
-            if (counter == 4) {
-                counter = 0;
-                result.append(s[i]).append("|");
-            } else result.append(s[i]).append(",");
+            result.append(s[i]);
+            if (i % 4 == 3) result.append('|');
+            else result.append(',');
         }
 
         setStopReel(result.toString());

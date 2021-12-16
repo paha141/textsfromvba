@@ -6,9 +6,9 @@ class SafariSam2Lines implements Lines {
     private SafariSam2Lines() {
     }
 
-    private static SafariSam2Lines instance;
+    private static Lines instance;
 
-    public static SafariSam2Lines get() {
+    public static Lines get() {
         if (instance == null) instance = new SafariSam2Lines();
         return instance;
     }

@@ -2,7 +2,7 @@ package Primal_Hunt;
 
 import abstractClasses.Symbol;
 
-import java.util.Set;
+import java.util.List;
 
 public enum PrimalHuntSymbol implements Symbol {
     LION("Lion", 0, new int[]{0, 1, 5, 25, 100}),
@@ -18,11 +18,11 @@ public enum PrimalHuntSymbol implements Symbol {
     J("J", 10, new int[]{0, 0, 1, 2, 4}),
     SCATTER("Scatter", 14, new int[]{0, 0, 80, 160, 960});
 
-    private final String name;
+    private String name;
     private final int id;
     private final int[] payouts;
 
-    public static final Set<Integer> IDS = Symbol.getIds(values());
+    public static final List<Integer> IDS = Symbol.getIds(values());
 
     PrimalHuntSymbol(String name, int id, int[] payouts) {
         this.name = name;
@@ -38,6 +38,11 @@ public enum PrimalHuntSymbol implements Symbol {
     @Override
     public String getName() {
         return name;
+    }
+
+    @Override
+    public void setName(String name) {
+        this.name = name;
     }
 
     @Override

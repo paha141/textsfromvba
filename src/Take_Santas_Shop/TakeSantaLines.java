@@ -6,9 +6,9 @@ class TakeSantaLines implements Lines {
     private TakeSantaLines() {
     }
 
-    private static TakeSantaLines instance;
+    private static Lines instance;
 
-    public static TakeSantaLines get() {
+    public static Lines get() {
         if (instance == null) instance = new TakeSantaLines();
         return instance;
     }

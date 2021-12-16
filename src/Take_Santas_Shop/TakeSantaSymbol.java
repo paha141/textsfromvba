@@ -2,7 +2,7 @@ package Take_Santas_Shop;
 
 import abstractClasses.Symbol;
 
-import java.util.Set;
+import java.util.List;
 
 public enum TakeSantaSymbol implements Symbol {
     WILD("BALL", 1, new int[]{0, 1, 4, 12, 60}),
@@ -19,11 +19,11 @@ public enum TakeSantaSymbol implements Symbol {
     TEN("10", 12, new int[]{0, 0, 1, 2, 6}),
     NINE("9", 13, new int[]{0, 0, 1, 2, 6});
 
-    private final String name;
+    private String name;
     private final int id;
     private final int[] payouts;
 
-    public static final Set<Integer> IDS = Symbol.getIds(values());
+    public static final List<Integer> IDS = Symbol.getIds(values());
 
     TakeSantaSymbol(String name, int id, int[] payouts) {
         this.name = name;
@@ -39,6 +39,11 @@ public enum TakeSantaSymbol implements Symbol {
     @Override
     public String getName() {
         return name;
+    }
+
+    @Override
+    public void setName(String name) {
+        this.name = name;
     }
 
     @Override

@@ -1,6 +1,6 @@
 package abstractClasses;
 
-public abstract class Win {
+public abstract class Win implements Comparable<Win> {
     private final int line;
     private final int symbolId;
     private final int countOfSymbols;
@@ -67,5 +67,10 @@ public abstract class Win {
         if (isMultiplierLine())
             return String.format(MESSAGE_WITH_MULTIPLIER, multiplier, payout / multiplier, countOfSymbols, symbol.getName(), payout);
         return String.format(MESSAGE_SIMPLE, countOfSymbols, symbol.getName(), payout);
+    }
+
+    @Override
+    public int compareTo(Win win) {
+        return payout - win.getPayout();
     }
 }

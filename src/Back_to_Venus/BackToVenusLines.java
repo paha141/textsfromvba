@@ -4,9 +4,9 @@ import abstractClasses.Lines;
 
 class BackToVenusLines implements Lines {
     private BackToVenusLines() {}
-    private static BackToVenusLines instance;
+    private static Lines instance;
 
-    public static BackToVenusLines get() {
+    public static Lines get() {
         if (instance == null) instance = new BackToVenusLines();
         return instance;
     }

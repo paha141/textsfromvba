@@ -3,11 +3,11 @@ package Moon_Bitten;
 import abstractClasses.Lines;
 
 class MoonBittenLines implements Lines {
-
     private MoonBittenLines() {}
-    private static MoonBittenLines instance;
 
-    public static MoonBittenLines get() {
+    private static Lines instance;
+
+    public static Lines get() {
         if (instance == null) instance = new MoonBittenLines();
         return instance;
     }

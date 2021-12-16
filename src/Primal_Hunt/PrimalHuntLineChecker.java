@@ -1,19 +1,24 @@
 package Primal_Hunt;
 
-import abstractClasses.AbstractLineChecker;
-import abstractClasses.Win;
 import abstractClasses.LineChecker;
+import abstractClasses.Spin;
+import abstractClasses.Win;
 
 import java.util.Arrays;
 
-public class PrimalHuntLineChecker extends AbstractLineChecker implements LineChecker {
+public class PrimalHuntLineChecker extends LineChecker {
 
-    static {
+    {
         ids = PrimalHuntSymbol.IDS;
         lines = PrimalHuntLines.get();
         hasMultipliers = true;
         wildIds = Arrays.asList(11, 12, 13);
         isTwoSides = false;
+        scatterId = PrimalHuntSymbol.SCATTER.getId();
+    }
+
+    public PrimalHuntLineChecker(Spin spin) {
+        super(spin);
     }
 
     @Override

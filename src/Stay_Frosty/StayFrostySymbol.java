@@ -2,7 +2,7 @@ package Stay_Frosty;
 
 import abstractClasses.Symbol;
 
-import java.util.Set;
+import java.util.List;
 
 public enum StayFrostySymbol implements Symbol {
     GREEN_GNOME("Green Gnome", 1, new int[]{0, 1, 5, 25, 100}),
@@ -18,11 +18,11 @@ public enum StayFrostySymbol implements Symbol {
     Ten("10", 11, new int[]{0, 0, 1, 2, 4}),
     SCATTER("Scatter", 12, new int[]{0, 0, 125, 250, 1250});
 
-    private final String name;
+    private String name;
     private final int id;
     private final int[] payouts;
 
-    public static final Set<Integer> IDS = Symbol.getIds(values());
+    public static final List<Integer> IDS = Symbol.getIds(values());
 
     StayFrostySymbol(String name, int id, int[] payouts) {
         this.name = name;
@@ -38,6 +38,11 @@ public enum StayFrostySymbol implements Symbol {
     @Override
     public String getName() {
         return name;
+    }
+
+    @Override
+    public void setName(String name) {
+        this.name = name;
     }
 
     @Override

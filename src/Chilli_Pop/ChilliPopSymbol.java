@@ -2,7 +2,7 @@ package Chilli_Pop;
 
 import abstractClasses.Symbol;
 
-import java.util.Set;
+import java.util.List;
 
 public enum ChilliPopSymbol implements Symbol {
     RED_CHILLI("Red Chilli", 0, 12),
@@ -15,11 +15,11 @@ public enum ChilliPopSymbol implements Symbol {
     ONION("Onion", 7, 2),
     WILD("WILD", 8, 2500);
 
-    private final String name;
+    private String name;
     private final int id;
     private final int payout;
 
-    public static final Set<Integer> IDS = Symbol.getIds(values());
+    public static final List<Integer> IDS = Symbol.getIds(values());
 
     ChilliPopSymbol(String name, int id, int payout) {
         this.name = name;
@@ -35,6 +35,11 @@ public enum ChilliPopSymbol implements Symbol {
     @Override
     public String getName() {
         return name;
+    }
+
+    @Override
+    public void setName(String name) {
+        this.name = name;
     }
 
     @Override

@@ -1,29 +1,33 @@
 package abstractClasses;
 
 import java.util.Arrays;
-import java.util.Set;
+import java.util.List;
 import java.util.stream.Collectors;
 
 public interface Symbol {
-    default int getPayout(int countOfSymbols){
-        return getPayouts()[countOfSymbols-1];
+    default int getPayout(int countOfSymbols) {
+        if (countOfSymbols == 0) return 0;
+        return getPayouts()[countOfSymbols - 1];
     }
 
     int getId();
 
     String getName();
 
+    void setName(String name);
+
     int[] getPayouts();
 
     static Symbol getById(int id, Symbol[] symbols) {
         return Arrays.stream(symbols)
                 .filter(symbol -> symbol.getId() == id)
-                .findFirst().orElse(null);
+                .findAny().orElse(null);
     }
 
-    static Set<Integer> getIds(Symbol[] symbols) {
+    static List<Integer> getIds(Symbol[] symbols) {
         return Arrays.stream(symbols)
                 .map(Symbol::getId)
-                .collect(Collectors.toSet());
+                .sorted()
+                .collect(Collectors.toList());
     }
 }

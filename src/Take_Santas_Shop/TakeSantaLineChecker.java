@@ -1,20 +1,24 @@
 package Take_Santas_Shop;
 
-import abstractClasses.AbstractLineChecker;
-import abstractClasses.Win;
 import abstractClasses.LineChecker;
+import abstractClasses.Spin;
+import abstractClasses.Win;
 
 import java.util.Collections;
 
 
-public class TakeSantaLineChecker extends AbstractLineChecker implements LineChecker {
+public class TakeSantaLineChecker extends LineChecker {
 
-    static {
+    {
         ids = TakeSantaSymbol.IDS;
         lines = TakeSantaLines.get();
         hasMultipliers = false;
-        wildIds = Collections.singletonList(1);
+        wildIds = Collections.singletonList(TakeSantaSymbol.WILD.getId());
         isTwoSides = false;
+    }
+
+    public TakeSantaLineChecker(Spin spin) {
+        super(spin);
     }
 
     @Override

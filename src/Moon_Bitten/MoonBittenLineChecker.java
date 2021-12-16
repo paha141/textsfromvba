@@ -1,19 +1,23 @@
 package Moon_Bitten;
 
-import abstractClasses.AbstractLineChecker;
 import abstractClasses.LineChecker;
+import abstractClasses.Spin;
 import abstractClasses.Win;
 
 import java.util.*;
 
-public class MoonBittenLineChecker extends AbstractLineChecker implements LineChecker {
+public class MoonBittenLineChecker extends LineChecker {
 
-    static {
+    {
         ids = MoonBittenSymbol.IDS;
         lines = MoonBittenLines.get();
         hasMultipliers = false;
         wildIds = Arrays.asList(10, 11, 14, 15, 16);
         isTwoSides = true;
+    }
+
+    public MoonBittenLineChecker(Spin spin) {
+        super(spin);
     }
 
     @Override
@@ -47,6 +51,6 @@ public class MoonBittenLineChecker extends AbstractLineChecker implements LineCh
         }
 
         Win winWild = createWin(line, MoonBittenSymbol.WILD.getId(), count, 1);
-        return winWild.getPayout() > win.getPayout() ? winWild : win;
+        return winWild.compareTo(win) > 0 ? winWild : win;
     }
 }

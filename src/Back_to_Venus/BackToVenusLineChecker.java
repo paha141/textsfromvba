@@ -1,19 +1,23 @@
 package Back_to_Venus;
 
-import abstractClasses.AbstractLineChecker;
-import abstractClasses.Win;
 import abstractClasses.LineChecker;
+import abstractClasses.Spin;
+import abstractClasses.Win;
 
 import java.util.Arrays;
 
 
-public class BackToVenusLineChecker extends AbstractLineChecker implements LineChecker {
-    static {
+public class BackToVenusLineChecker extends LineChecker {
+    {
         ids = BackToVenusSymbol.IDS;
         lines = BackToVenusLines.get();
         hasMultipliers = true;
         wildIds = Arrays.asList(21, 22, 23);
         isTwoSides = false;
+    }
+
+    public BackToVenusLineChecker(Spin spin) {
+        super(spin);
     }
 
     @Override
