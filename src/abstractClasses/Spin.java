@@ -25,13 +25,11 @@ public abstract class Spin {
     protected void initWins(LineChecker lineChecker) {
         prefixForWinMessage = "line ";
         lineChecker.getWins();
-        wins.sort(Comparator.comparingInt(Win::getLine));
     }
 
     protected void initWins(ClusterChecker clusterChecker) {
         prefixForWinMessage = "chain ";
         wins = clusterChecker.getWins();
-        wins.sort(Comparator.comparingInt(Win::getLine));
     }
 
 
@@ -105,12 +103,12 @@ public abstract class Spin {
 
 
     private String getTotalForSpinMessage() {
-        StringJoiner joiner = new StringJoiner("+");
+        StringJoiner joiner = new StringJoiner(" + ");
         for (List<Win> list : getMap().values()) {
             int payout = list.get(0).getPayout();
 
             if (list.size() == 1) joiner.add("" + payout);
-            else joiner.add(payout + "*" + list.size());
+            else joiner.add(payout + " * " + list.size());
         }
 
         return String.format("Total for spin: %s = %d credits;", joiner, getTotalWin());

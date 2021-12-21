@@ -1,6 +1,7 @@
 package abstractClasses;
 
 import java.util.Arrays;
+import java.util.Collection;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -24,7 +25,7 @@ public interface Symbol {
                 .findAny().orElse(null);
     }
 
-    static List<Integer> getIds(Symbol[] symbols) {
+    static Collection<Integer> getIds(Symbol[] symbols) {
         return Arrays.stream(symbols)
                 .map(Symbol::getId)
                 .sorted()

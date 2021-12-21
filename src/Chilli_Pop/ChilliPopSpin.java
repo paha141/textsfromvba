@@ -13,11 +13,11 @@ public class ChilliPopSpin extends Spin {
 
     public ChilliPopSpin(int spin, double coin, int bet, String stopReel) {
         super(spin, coin, bet, stopReel);
-        setPrefixForWinMessage("");
         if (checkForWild()) {
             Win win = new ChilliPopWin(1, ChilliPopSymbol.WILD.getId(), stopReel.split("[,|]").length);
             setWins(Collections.singletonList(win));
         } else initWins(new ChilliPopClusterChecker(this));
+        setPrefixForWinMessage("");
     }
 
     public static void main(String[] args) {

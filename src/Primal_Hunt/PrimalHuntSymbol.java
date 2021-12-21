@@ -2,7 +2,7 @@ package Primal_Hunt;
 
 import abstractClasses.Symbol;
 
-import java.util.List;
+import java.util.Collection;
 
 public enum PrimalHuntSymbol implements Symbol {
     LION("Lion", 0, new int[]{0, 1, 5, 25, 100}),
@@ -22,7 +22,7 @@ public enum PrimalHuntSymbol implements Symbol {
     private final int id;
     private final int[] payouts;
 
-    public static final List<Integer> IDS = Symbol.getIds(values());
+    public static final Collection<Integer> IDS = Symbol.getIds(values());
 
     PrimalHuntSymbol(String name, int id, int[] payouts) {
         this.name = name;

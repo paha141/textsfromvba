@@ -2,7 +2,7 @@ package Moon_Bitten;
 
 import abstractClasses.Symbol;
 
-import java.util.List;
+import java.util.Collection;
 
 public enum MoonBittenSymbol implements Symbol {
     BAT("Bat", 0, new int[]{0, 0, 100, 200, 500, 1000, 2500, 4000, 7500, 15000, 25000, 50000}),
@@ -22,7 +22,7 @@ public enum MoonBittenSymbol implements Symbol {
     private final int id;
     private final int[] payouts;
 
-    public static final List<Integer> IDS = Symbol.getIds(values());
+    public static final Collection<Integer> IDS = Symbol.getIds(values());
 
     MoonBittenSymbol(String name, int id, int[] payouts) {
         this.name = name;

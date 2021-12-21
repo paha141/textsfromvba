@@ -2,7 +2,7 @@ package Back_to_Venus;
 
 import abstractClasses.Symbol;
 
-import java.util.List;
+import java.util.Collection;
 
 public enum BackToVenusSymbol implements Symbol {
     FARMER("Farmer", 1, new int[]{0, 0, 30, 100, 300}),
@@ -20,7 +20,7 @@ public enum BackToVenusSymbol implements Symbol {
     private final int id;
     private final int[] payouts;
 
-    public static final List<Integer> IDS = Symbol.getIds(values());
+    public static final Collection<Integer> IDS = Symbol.getIds(values());
 
     BackToVenusSymbol(String name, int id, int[] payouts) {
         this.name = name;

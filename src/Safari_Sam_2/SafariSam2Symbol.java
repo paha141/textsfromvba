@@ -2,7 +2,7 @@ package Safari_Sam_2;
 
 import abstractClasses.Symbol;
 
-import java.util.List;
+import java.util.Collection;
 
 public enum SafariSam2Symbol implements Symbol {
     SAM("Sam", 0, new int[]{0, 0, 25, 50, 200}),
@@ -22,7 +22,7 @@ public enum SafariSam2Symbol implements Symbol {
     private final int id;
     private final int[] payouts;
 
-    public static final List<Integer> IDS = Symbol.getIds(values());
+    public static final Collection<Integer> IDS = Symbol.getIds(values());
 
     SafariSam2Symbol(String name, int id, int[] payouts) {
         this.name = name;

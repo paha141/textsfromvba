@@ -4,10 +4,10 @@ import java.util.*;
 import java.util.stream.Collectors;
 
 public abstract class LineChecker implements Checker {
-    protected List<Integer> ids;
+    protected Collection<Integer> ids;
     protected Lines lines;
     protected boolean hasMultipliers = false;
-    protected List<Integer> wildIds;
+    protected Collection<Integer> wildIds;
     protected boolean isTwoSides = false;
     protected int scatterId = -1000;
 
@@ -55,7 +55,7 @@ public abstract class LineChecker implements Checker {
 
         for (int i : temp) {
             if (wildIds.contains(i)) {
-                multiplier *= i - wildIds.get(0) + 1;
+                multiplier *= i - Collections.min(wildIds) + 1;
                 count++;
                 continue;
             }
@@ -79,8 +79,8 @@ public abstract class LineChecker implements Checker {
 
     protected abstract Win createWin(int line, int symbolId, int countOfSymbols, int multiplier);
 
-    protected static int getSymbolId(int[] temp, List<Integer> wildIds, List<Integer> ids) {
-        int symbolId = wildIds.get(0);
+    protected static int getSymbolId(int[] temp, Collection<Integer> wildIds, Collection<Integer> ids) {
+        int symbolId = Collections.min(wildIds);
         for (int i : temp) {
             if (ids.contains(i) && !wildIds.contains(i)) {
                 symbolId = i;
