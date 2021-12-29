@@ -29,7 +29,6 @@ public class ChilliPopSpin extends Spin {
     private boolean checkForWild() {
         List<String> list = Arrays.asList(getStopReel().split("[,|]"));
         return list.stream()
-                .filter(s -> s.equals(String.valueOf(ChilliPopSymbol.WILD.getId())))
-                .count() == list.size();
+                .allMatch(s -> s.equals("8"));
     }
 }
