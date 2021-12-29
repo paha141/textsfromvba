@@ -25,8 +25,8 @@ public class TakeSantaSpin extends Spin {
     }
 
     public static void main(String[] args) {
-        Spin spin = new TakeSantaSpin(10, 1.50, BET, "2,2,2,2|2,2,2,9|10,2,2,2|12,9,0,0|12,3,3,11",
-                "17,18,0,1,2,3", true);
+        Spin spin = new TakeSantaSpin(548, 2.50, BET, "11,10,7,9|13,4,0,5|8,13,9,14|13,14,10,12|11,7,10,3",
+                "12,13,14,15,16,17,18,19,4,5,0,1,8,9,10", true);
         spin.showMessage();
     }
 

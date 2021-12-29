@@ -5,7 +5,7 @@ import abstractClasses.Symbol;
 import java.util.Collection;
 
 public enum TakeSantaSymbol implements Symbol {
-    WILD("BALL", 1, new int[]{0, 1, 4, 12, 60}),
+    WILD("Ball", 1, new int[]{0, 0, 0, 0, 60}),
     BALL("Ball", 2, new int[]{0, 1, 4, 12, 60}),
     GINGERBREAD("Gingerbread", 3, new int[]{0, 0, 3, 6, 20}),
     SOCK("Sock", 4, new int[]{0, 0, 3, 5, 18}),
