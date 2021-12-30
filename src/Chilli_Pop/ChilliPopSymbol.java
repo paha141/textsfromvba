@@ -3,6 +3,7 @@ package Chilli_Pop;
 import abstractClasses.Symbol;
 
 import java.util.Collection;
+import java.util.Collections;
 
 public enum ChilliPopSymbol implements Symbol {
     RED_CHILLI("Red Chilli", 0, 12),
@@ -13,13 +14,13 @@ public enum ChilliPopSymbol implements Symbol {
     GREEN_PEPPER("Green Pepper", 5, 2),
     TOMATO("Tomato", 6, 2),
     ONION("Onion", 7, 2),
-    WILD("WILD", 8, 2500);
+    WILD("WILD", 8, 0);
 
     private String name;
     private final int id;
     private final int payout;
 
-    public static final Collection<Integer> IDS = Symbol.getIds(values());
+    public static final Collection<Integer> WILD_IDS = Collections.singleton(WILD.getId());
 
     ChilliPopSymbol(String name, int id, int payout) {
         this.name = name;
@@ -55,5 +56,10 @@ public enum ChilliPopSymbol implements Symbol {
     @Override
     public int getPayout(int countOfSymbols) {
         return payout * countOfSymbols;
+    }
+
+    @Override
+    public boolean isWild() {
+        return WILD_IDS.contains(id);
     }
 }

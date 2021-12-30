@@ -1,14 +1,21 @@
 package Primal_Hunt;
 
+import abstractClasses.LineChecker;
 import abstractClasses.Spin;
 
 public class PrimalHuntSpin extends Spin {
     private static final int BET = 10;
+    private static final LineChecker LINE_CHECKER = new LineChecker(
+            PrimalHuntSymbol.class,
+            PrimalHuntLines.get(),
+            PrimalHuntSymbol.WILD_IDS,
+            true, false,
+            PrimalHuntSymbol.SCATTER.getId()
+    );
 
     public PrimalHuntSpin(int spin, double coin, int bet, String stopReel) {
-        super(spin, coin, bet, stopReel);
-
-        initWins(new PrimalHuntLineChecker(this));
+        super(LINE_CHECKER, spin, coin, bet, stopReel);
+        initLineWins();
     }
 
     public static void main(String[] args) {

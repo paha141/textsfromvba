@@ -2,7 +2,9 @@ package Safari_Sam_2;
 
 import abstractClasses.Symbol;
 
+import java.util.Arrays;
 import java.util.Collection;
+import java.util.Collections;
 
 public enum SafariSam2Symbol implements Symbol {
     SAM("Sam", 0, new int[]{0, 0, 25, 50, 200}),
@@ -22,7 +24,7 @@ public enum SafariSam2Symbol implements Symbol {
     private final int id;
     private final int[] payouts;
 
-    public static final Collection<Integer> IDS = Symbol.getIds(values());
+    public static final Collection<Integer> WILD_IDS = Collections.singletonList(WILD.getId());
 
     SafariSam2Symbol(String name, int id, int[] payouts) {
         this.name = name;
@@ -55,4 +57,8 @@ public enum SafariSam2Symbol implements Symbol {
         return payouts;
     }
 
+    @Override
+    public boolean isWild() {
+        return WILD_IDS.contains(id);
+    }
 }

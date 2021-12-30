@@ -1,28 +1,28 @@
 package abstractClasses;
 
-public abstract class Win implements Comparable<Win> {
+public class Win implements Comparable<Win> {
     private final int line;
-    private final int symbolId;
+    private final Symbol symbol;
     private final int countOfSymbols;
 
     private int multiplier;
 
-    protected int payout;
-    protected Symbol symbol;
+    private int payout;
 
     private static final String MESSAGE_SIMPLE = "%dx %s symbol cost %d credits;";
     private static final String MESSAGE_WITH_MULTIPLIER = "%d (multiplier) * %d (%dx %s symbol) = %d credits;";
     private static final String MESSAGE_SCATTER = "Scatter Win: %dx %s cost %d credits;";
 
-    public Win(int line, int symbolId, int countOfSymbols) {
-        this(line, symbolId, countOfSymbols, 1);
+    public Win(int line, Symbol symbol, int countOfSymbols) {
+        this(line, symbol, countOfSymbols, 1);
     }
 
-    public Win(int line, int symbolId, int countOfSymbols, int multiplier) {
+    public Win(int line, Symbol symbol, int countOfSymbols, int multiplier) {
         this.line = line;
-        this.symbolId = symbolId;
+        this.symbol = symbol;
         this.countOfSymbols = countOfSymbols;
         this.multiplier = multiplier;
+        this.payout = symbol.getPayout(countOfSymbols) * multiplier;
     }
 
     public int getPayout() {
@@ -35,10 +35,6 @@ public abstract class Win implements Comparable<Win> {
 
     public int getLine() {
         return line;
-    }
-
-    public int getSymbolId() {
-        return symbolId;
     }
 
     public int getCountOfSymbols() {
@@ -71,6 +67,6 @@ public abstract class Win implements Comparable<Win> {
 
     @Override
     public int compareTo(Win win) {
-        return payout - win.getPayout();
+        return Integer.compare(payout, win.getPayout());
     }
 }

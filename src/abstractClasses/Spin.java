@@ -4,6 +4,7 @@ import java.util.*;
 import java.util.stream.Collectors;
 
 public abstract class Spin {
+    private final Checker checker;
     private final int spin;
     private final double coin;
     private final int bet;
@@ -15,38 +16,39 @@ public abstract class Spin {
     private Map<String, List<Win>> map;
     private String prefixForWinMessage;
 
-    public Spin(int spin, double coin, int bet, String stopReel) {
+    public Spin(Checker checker, int spin, double coin, int bet, String stopReel) {
+        this.checker = checker;
         this.spin = spin;
         this.coin = coin;
         this.bet = bet;
         this.stopReel = stopReel;
     }
 
-    protected void initWins(LineChecker lineChecker) {
+    protected void initLineWins() {
         prefixForWinMessage = "line ";
-        lineChecker.getWins();
+        wins = checker.initWins(this.stopReel);
     }
 
-    protected void initWins(ClusterChecker clusterChecker) {
+    protected void initClusterWins() {
         prefixForWinMessage = "chain ";
-        wins = clusterChecker.getWins();
+        wins = checker.initWins(this.stopReel);
     }
 
 
-    private void calcTotalWin() {
+    private int calcTotalWin() {
         if (wins == null || wins.isEmpty()) totalWin = 0;
         else totalWin = wins.stream().mapToInt(Win::getPayout).sum();
+        return totalWin;
     }
 
 
-    private void initMap() {
-        map = wins.stream()
+    private Map<String, List<Win>> initMap() {
+        return map = wins.stream()
                 .collect(Collectors.groupingBy(Win::toString, Collectors.toList()));
     }
 
     public void showMessage() {
         if (getTotalWin() == 0) return;
-
         System.out.printf(Locale.ENGLISH, "For spin %d (bet %d, coin %.2f):\n", spin, bet, coin);
         getMessagesList().forEach(System.out::println);
         System.out.println(getTotalForSpinMessage());
@@ -56,7 +58,6 @@ public abstract class Spin {
 
     private List<String> getMessagesList() {
         if (wins == null || wins.isEmpty()) return Collections.singletonList("");
-
         return getMap().entrySet().stream()
                 .map(entry -> getFullPrefix(entry.getValue()) + ": " + entry.getKey())
                 .collect(Collectors.toList());
@@ -64,53 +65,46 @@ public abstract class Spin {
 
     private String getFullPrefix(List<Win> wins) {
         StringBuilder prefix = new StringBuilder(prefixForWinMessage);
-
-        if (wins.get(0).getLine() == -1)
+        if (wins.get(0).getLine() == -1) {
             return wins.get(0).toString();
-
+        }
         prefix.append(wins.get(0).getLine());
         for (int i = 1; i < wins.size(); i++) {
             Win prev = wins.get(i - 1);
             Win current = wins.get(i);
-
-            if (current.getLine() != prev.getLine() + 1) prefix.append(", ").append(current.getLine());
+            if (wins.get(i).getLine() != prev.getLine() + 1) {
+                prefix.append(", ").append(current.getLine());
+            }
             else {
                 i = getLastIndexInSequence(wins, i - 1);
                 prefix.append("-").append(wins.get(i).getLine());
             }
         }
-
         return prefix.toString();
 
     }
 
     private static int getLastIndexInSequence(List<Win> wins, int index) {
         int lastIndex = index;
-
         Win first = wins.get(index);
         int count = 1;
-
         for (int i = index + 1; i < wins.size(); i++) {
             if (wins.get(i).getLine() == first.getLine() + count) {
                 count++;
                 lastIndex = i;
-            }
-            else break;
+            } else break;
         }
-
         return lastIndex;
     }
 
 
     private String getTotalForSpinMessage() {
-        StringJoiner joiner = new StringJoiner(" + ");
+        StringJoiner joiner = new StringJoiner("+");
         for (List<Win> list : getMap().values()) {
             int payout = list.get(0).getPayout();
-
             if (list.size() == 1) joiner.add("" + payout);
-            else joiner.add(payout + " * " + list.size());
+            else joiner.add(payout + "*" + list.size());
         }
-
         return String.format("Total for spin: %s = %d credits;", joiner, getTotalWin());
     }
 
@@ -128,6 +122,10 @@ public abstract class Spin {
         setWins(map.values().stream()
                 .map(wins -> wins.stream().max(Win::compareTo).orElseThrow(null))
                 .collect(Collectors.toList()));
+    }
+
+    public Checker getChecker() {
+        return checker;
     }
 
     public int getSpin() {
@@ -158,21 +156,19 @@ public abstract class Spin {
         this.wins = wins;
     }
 
-    public int getTotalWin() {
-        if (totalWin == 0) calcTotalWin();
-        return totalWin;
-    }
-
-    private Map<String, List<Win>> getMap() {
-        if (map == null) initMap();
-        return map;
-    }
-
     public String getPrefixForWinMessage() {
         return prefixForWinMessage;
     }
 
     public void setPrefixForWinMessage(String prefixForWinMessage) {
         this.prefixForWinMessage = prefixForWinMessage;
+    }
+
+    public int getTotalWin() {
+        return totalWin == 0 ? calcTotalWin() : totalWin;
+    }
+
+    private Map<String, List<Win>> getMap() {
+        return map == null ? initMap() : map;
     }
 }

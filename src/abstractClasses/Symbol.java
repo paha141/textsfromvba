@@ -2,12 +2,11 @@ package abstractClasses;
 
 import java.util.Arrays;
 import java.util.Collection;
-import java.util.List;
 import java.util.stream.Collectors;
 
 public interface Symbol {
     default int getPayout(int countOfSymbols) {
-        if (countOfSymbols == 0) return 0;
+        if (countOfSymbols < 1) return 0;
         return getPayouts()[countOfSymbols - 1];
     }
 
@@ -18,6 +17,8 @@ public interface Symbol {
     void setName(String name);
 
     int[] getPayouts();
+
+    boolean isWild();
 
     static Symbol getById(int id, Symbol[] symbols) {
         return Arrays.stream(symbols)
@@ -30,5 +31,9 @@ public interface Symbol {
                 .map(Symbol::getId)
                 .sorted()
                 .collect(Collectors.toList());
+    }
+
+    static void setNameForSymbol(Symbol symbol, String name) {
+        symbol.setName(name);
     }
 }

@@ -9,17 +9,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ChilliPopClusterChecker implements ClusterChecker {
-    private final Spin spin;
-    private final int[][] matrix;
 
-    public ChilliPopClusterChecker(Spin spin) {
-        this.spin = spin;
-        matrix = Checker.getMatrix(spin.getStopReel());
+    public ChilliPopClusterChecker() {
     }
 
     @Override
-    public List<Win> getWins() {
+    public List<Win> initWins(String stopReel) {
         List<Win> result = new ArrayList<>();
+        int[][] matrix = Checker.getMatrix(stopReel);
 
         for (int i = 0; i < matrix.length; i++)
             for (int j = 0; j < matrix[i].length; j++) {

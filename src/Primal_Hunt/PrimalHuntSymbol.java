@@ -2,6 +2,7 @@ package Primal_Hunt;
 
 import abstractClasses.Symbol;
 
+import java.util.Arrays;
 import java.util.Collection;
 
 public enum PrimalHuntSymbol implements Symbol {
@@ -23,6 +24,7 @@ public enum PrimalHuntSymbol implements Symbol {
     private final int[] payouts;
 
     public static final Collection<Integer> IDS = Symbol.getIds(values());
+    public static final Collection<Integer> WILD_IDS = Arrays.asList(11, 12, 13);
 
     PrimalHuntSymbol(String name, int id, int[] payouts) {
         this.name = name;
@@ -55,4 +57,8 @@ public enum PrimalHuntSymbol implements Symbol {
         return payouts;
     }
 
+    @Override
+    public boolean isWild() {
+        return WILD_IDS.contains(id);
+    }
 }

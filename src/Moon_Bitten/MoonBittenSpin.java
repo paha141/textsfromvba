@@ -1,20 +1,21 @@
 package Moon_Bitten;
 
+import abstractClasses.LineChecker;
 import abstractClasses.Spin;
-import abstractClasses.Win;
-
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-import java.util.Optional;
-import java.util.stream.Collectors;
 
 public class MoonBittenSpin extends Spin {
     private static final int BET = 150;
+    private static final LineChecker LINE_CHECKER = new MoonBittenLineChecker(
+            MoonBittenSymbol.class,
+            MoonBittenLines.get(),
+            MoonBittenSymbol.WILD_IDS,
+            false, true,
+            -1000
+    );
 
     public MoonBittenSpin(int spin, double coin, int bet, String stopReel) {
-        super(spin, coin, bet, stopReel);
-        initWins(new MoonBittenLineChecker(this));
+        super(LINE_CHECKER, spin, coin, bet, stopReel);
+        initLineWins();
         removeDuplicateLines();
     }
 

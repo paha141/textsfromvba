@@ -1,5 +1,6 @@
 package Take_Santas_Shop;
 
+import abstractClasses.LineChecker;
 import abstractClasses.Spin;
 
 import java.util.Arrays;
@@ -8,6 +9,13 @@ import java.util.stream.Collectors;
 
 public class TakeSantaSpin extends Spin {
     private static final int BET = 20;
+    private static final LineChecker LINE_CHECKER = new LineChecker(
+            TakeSantaSymbol.class,
+            TakeSantaLines.get(),
+            TakeSantaSymbol.WILD_IDS,
+            false, false,
+            -1000
+    );
 
     private final String currentWildPositions;
 
@@ -16,12 +24,11 @@ public class TakeSantaSpin extends Spin {
     }
 
     public TakeSantaSpin(int spin, double coin, int bet, String stopReel, String currentWildPositions, boolean isBombCounterZero) {
-        super(spin, coin, bet, stopReel);
+        super(LINE_CHECKER, spin, coin, bet, stopReel);
         this.currentWildPositions = currentWildPositions;
-        if (isBombCounterZero)
-            resetStopReel();
+        if (isBombCounterZero) resetStopReel();
 
-        initWins(new TakeSantaLineChecker(this));
+        initLineWins();
     }
 
     public static void main(String[] args) {

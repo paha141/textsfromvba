@@ -1,12 +1,21 @@
 package Stay_Frosty;
 
+import abstractClasses.LineChecker;
 import abstractClasses.Spin;
 
 
 public class StayFrostySpin extends Spin {
+    private static final LineChecker LINE_CHECKER = new LineChecker(
+            StayFrostySymbol.class,
+            StayFrostyLines.get(),
+            StayFrostySymbol.WILD_IDS,
+            false, false,
+            StayFrostySymbol.SCATTER.getId()
+    );
+
     public StayFrostySpin(int spin, double coin, int bet, String stopReel) {
-        super(spin, coin, bet, stopReel);
-        initWins(new StayFrostyLineChecker(this));
+        super(LINE_CHECKER, spin, coin, bet, stopReel);
+        initLineWins();
     }
 
     public static void main(String[] args) {

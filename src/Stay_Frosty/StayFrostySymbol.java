@@ -3,6 +3,7 @@ package Stay_Frosty;
 import abstractClasses.Symbol;
 
 import java.util.Collection;
+import java.util.Collections;
 
 public enum StayFrostySymbol implements Symbol {
     GREEN_GNOME("Green Gnome", 1, new int[]{0, 1, 5, 25, 100}),
@@ -22,7 +23,7 @@ public enum StayFrostySymbol implements Symbol {
     private final int id;
     private final int[] payouts;
 
-    public static final Collection<Integer> IDS = Symbol.getIds(values());
+    public static final Collection<Integer> WILD_IDS = Collections.singletonList(0);
 
     StayFrostySymbol(String name, int id, int[] payouts) {
         this.name = name;
@@ -53,5 +54,10 @@ public enum StayFrostySymbol implements Symbol {
     @Override
     public int[] getPayouts() {
         return payouts;
+    }
+
+    @Override
+    public boolean isWild() {
+        return WILD_IDS.contains(id);
     }
 }

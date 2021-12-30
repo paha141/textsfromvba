@@ -2,6 +2,7 @@ package Moon_Bitten;
 
 import abstractClasses.Symbol;
 
+import java.util.Arrays;
 import java.util.Collection;
 
 public enum MoonBittenSymbol implements Symbol {
@@ -22,7 +23,7 @@ public enum MoonBittenSymbol implements Symbol {
     private final int id;
     private final int[] payouts;
 
-    public static final Collection<Integer> IDS = Symbol.getIds(values());
+    public static final Collection<Integer> WILD_IDS = Arrays.asList(10, 11, 14, 15, 16);
 
     MoonBittenSymbol(String name, int id, int[] payouts) {
         this.name = name;
@@ -53,5 +54,10 @@ public enum MoonBittenSymbol implements Symbol {
     @Override
     public int[] getPayouts() {
         return payouts;
+    }
+
+    @Override
+    public boolean isWild() {
+        return WILD_IDS.contains(id);
     }
 }

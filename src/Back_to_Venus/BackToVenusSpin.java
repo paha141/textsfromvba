@@ -1,11 +1,19 @@
 package Back_to_Venus;
 
+import abstractClasses.LineChecker;
 import abstractClasses.Spin;
 
 import java.util.*;
 
 public class BackToVenusSpin extends Spin {
     private static final int BET = 20;
+    private static final LineChecker LINE_CHECKER = new LineChecker(
+            BackToVenusSymbol.class,
+            BackToVenusLines.get(),
+            BackToVenusSymbol.WILD_IDS,
+            true, false,
+            -1000
+    );
 
     private final String multiplier;
 
@@ -14,11 +22,11 @@ public class BackToVenusSpin extends Spin {
     }
 
     public BackToVenusSpin(int spin, double coin, int bet, String stopReel, String multiplier) {
-        super(spin, coin, bet, stopReel);
+        super(LINE_CHECKER, spin, coin, bet, stopReel);
         this.multiplier = multiplier;
 
         if (!multiplier.isEmpty()) resetStopReel();
-        initWins(new BackToVenusLineChecker(this));
+        initLineWins();
     }
 
     public static void main(String[] args) {

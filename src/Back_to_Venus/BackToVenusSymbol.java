@@ -2,6 +2,7 @@ package Back_to_Venus;
 
 import abstractClasses.Symbol;
 
+import java.util.Arrays;
 import java.util.Collection;
 
 public enum BackToVenusSymbol implements Symbol {
@@ -20,7 +21,7 @@ public enum BackToVenusSymbol implements Symbol {
     private final int id;
     private final int[] payouts;
 
-    public static final Collection<Integer> IDS = Symbol.getIds(values());
+    public static final Collection<Integer> WILD_IDS = Arrays.asList(21, 22, 23);
 
     BackToVenusSymbol(String name, int id, int[] payouts) {
         this.name = name;
@@ -52,4 +53,11 @@ public enum BackToVenusSymbol implements Symbol {
     public int[] getPayouts() {
         return payouts;
     }
+
+    @Override
+    public boolean isWild() {
+        return WILD_IDS.contains(id);
+    }
+
+
 }

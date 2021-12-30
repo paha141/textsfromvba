@@ -3,6 +3,7 @@ package Take_Santas_Shop;
 import abstractClasses.Symbol;
 
 import java.util.Collection;
+import java.util.Collections;
 
 public enum TakeSantaSymbol implements Symbol {
     WILD("Ball", 1, new int[]{0, 0, 0, 0, 60}),
@@ -23,7 +24,7 @@ public enum TakeSantaSymbol implements Symbol {
     private final int id;
     private final int[] payouts;
 
-    public static final Collection<Integer> IDS = Symbol.getIds(values());
+    public static final Collection<Integer> WILD_IDS = Collections.singletonList(WILD.getId());
 
     TakeSantaSymbol(String name, int id, int[] payouts) {
         this.name = name;
@@ -56,4 +57,8 @@ public enum TakeSantaSymbol implements Symbol {
         return payouts;
     }
 
+    @Override
+    public boolean isWild() {
+        return WILD_IDS.contains(id);
+    }
 }

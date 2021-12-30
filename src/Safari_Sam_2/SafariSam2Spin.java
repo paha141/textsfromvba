@@ -1,13 +1,21 @@
 package Safari_Sam_2;
 
+import abstractClasses.LineChecker;
 import abstractClasses.Spin;
 
 public class SafariSam2Spin extends Spin {
     private static final int BET = 20;
+    private static final LineChecker LINE_CHECKER = new LineChecker(
+            SafariSam2Symbol.class,
+            SafariSam2Lines.get(),
+            SafariSam2Symbol.WILD_IDS,
+            false, false,
+            SafariSam2Symbol.SCATTER.getId()
+    );
 
     public SafariSam2Spin(int spin, double coin, int bet, String stopReel) {
-        super(spin, coin, bet, stopReel);
-        initWins(new SafariSam2LineChecker(this));
+        super(LINE_CHECKER, spin, coin, bet, stopReel);
+        initLineWins();
     }
 
 

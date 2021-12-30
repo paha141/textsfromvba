@@ -6,7 +6,6 @@ import abstractClasses.Win;
 import java.util.Arrays;
 
 public class ChilliPopWin extends Win {
-
     private static final int[] WILD_COUNTS = new int[]{15, 20, 24, 30, 36, 42, 48, 56, 64};
     private static final int[] WILD_PAYOUTS = new int[]{2500, 3750, 5000, 10000, 15000, 20000, 30000, 40000, 50000};
 
@@ -15,11 +14,10 @@ public class ChilliPopWin extends Win {
     }
 
     public ChilliPopWin(int line, int symbolId, int countOfSymbols, int multiplier) {
-        super(line, symbolId, countOfSymbols, multiplier);
-        symbol = Symbol.getById(symbolId, ChilliPopSymbol.values());
+        super(line, Symbol.getById(symbolId, ChilliPopSymbol.values()), countOfSymbols, multiplier);
         if (symbolId == ChilliPopSymbol.WILD.getId()) {
-            int index = Arrays.binarySearch(WILD_COUNTS, countOfSymbols);
-            payout = WILD_PAYOUTS[index];
-        } else payout = symbol.getPayout(countOfSymbols) * multiplier;
+            int index = Arrays.binarySearch(WILD_COUNTS, getCountOfSymbols());
+            setPayout(WILD_PAYOUTS[index]);
+        }
     }
 }
